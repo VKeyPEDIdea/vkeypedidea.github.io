@@ -132,3 +132,24 @@ for (var i = 0; i < btnCart.length; i++) {
 /* Чек лист верстки
 	Сверстать поп-ап
 */
+
+// Mobile Menu - мобильное меню
+var btnMenu = document.getElementById('btn-menu-burger');
+var btnMenuClose = document.getElementById('btn-menu-close');
+var mobileMenu = document.getElementById('mobile-menu');
+
+// Открыть мобильное меню
+function openMobileMenu() {
+	mobileMenu.style.display = 'block';
+}
+
+// Закрыть мобильное меню
+function closeMobileMenu() {
+	mobileMenu.style.display = 'none';
+}
+
+// Обработчик события клика на кнопку Открыть мобильное меню
+btnMenu.addEventListener('click', openMobileMenu, false);
+
+// Обработчик события клика на кнопку Закрыть мобильное меню
+btnMenuClose.addEventListener('click', closeMobileMenu, false);
