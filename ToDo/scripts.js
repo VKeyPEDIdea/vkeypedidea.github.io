@@ -67,12 +67,14 @@ function clearTaskList() {
 // Добавить задачу
 function addTask() {
 	let taskTitle = prompt('Введите название','');
-	let task = {title: taskTitle, done: false};
-	tasks.push(task);
-
-	createListItem(taskTitle);
-	taskCount = tasks.length;
-	clickDeleteBtn();
+	if (taskTitle != null) {
+		let task = {title: taskTitle, done: false};
+		tasks.push(task);
+	
+		createListItem(taskTitle);
+		taskCount = tasks.length;
+		clickDeleteBtn();
+	}
 }
 
 // Удалить задачу из списка
