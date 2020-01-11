@@ -15,6 +15,7 @@ let tasks = [
 let taskCount = tasks.length;
 let deleteBtnList;
 let editBtnList;
+let checkboxList;
 
 // Изменить задачу
 let editTask = function (id) {
@@ -22,6 +23,7 @@ let editTask = function (id) {
 	clearTaskList();
 	showTaskList();
 }
+
 showTaskList();
 
 // Сделать отображение списка дел
@@ -36,8 +38,10 @@ function showTaskList() {
 
 	deleteBtnList = document.getElementsByClassName('btn-delete');
 	editBtnList = document.getElementsByClassName('btn-edit');
+	checkboxList = document.getElementsByClassName('list-item__check');
 	clickDeleteBtn();
 	clickEditBtn();
+	clickCheckbox();
 }
 
 // Создать элемент списка дел
@@ -84,6 +88,7 @@ function addTask() {
 		taskCount = tasks.length;
 		clickDeleteBtn();
 		clickEditBtn();
+		clickCheckbox();
 	}
 }
 
@@ -95,6 +100,16 @@ function removeTask() {
 	showTaskList();
 }
 
+// Отметить задачу выполненной
+function checkTask(id) {
+	let title = document.getElementsByClassName('list-item__title');
+
+	if (checkboxList[id].checked == true) {
+		title[id].style.textDecoration = 'line-through';
+	} else if (checkboxList[id].checked == false) {
+		title[id].style.textDecoration = 'none';
+	}
+}
 
 // Обработчик события - нажатие на кнопку Удалить
 function clickDeleteBtn() {
@@ -109,6 +124,14 @@ function clickEditBtn() {
 		editBtnList[i].addEventListener('click', editTask.bind(null, i), true);
 	}
 }
+
+// Обработчик события - нажатие на чек-бокс
+function clickCheckbox() {
+	for (let i = 0; i < checkboxList.length; i++) {
+		checkboxList[i].addEventListener('click', checkTask.bind(null, i), false);
+	}
+}
+let checkbox = document.getElementsByClassName('list-item__check')[0];
 
 // Обработчик события - нажатие на кнопку Добавить дело
 addTaskBtn.addEventListener('click', addTask, false);
