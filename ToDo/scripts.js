@@ -14,7 +14,14 @@ let tasks = [
 ];
 let taskCount = tasks.length;
 let deleteBtnList;
+let editBtnList;
 
+// Изменить задачу
+let editTask = function (id) {
+	tasks[id].title = prompt('Измените задачу', '');
+	clearTaskList();
+	showTaskList();
+}
 showTaskList();
 
 // Сделать отображение списка дел
@@ -28,7 +35,9 @@ function showTaskList() {
 	}
 
 	deleteBtnList = document.getElementsByClassName('btn-delete');
+	editBtnList = document.getElementsByClassName('btn-edit');
 	clickDeleteBtn();
+	clickEditBtn();
 }
 
 // Создать элемент списка дел
@@ -74,21 +83,30 @@ function addTask() {
 		createListItem(taskTitle);
 		taskCount = tasks.length;
 		clickDeleteBtn();
+		clickEditBtn();
 	}
 }
 
 // Удалить задачу из списка
-function removeTask(id) {
-	tasks.splice(id, 1);
+function removeTask() {
+	tasks.splice('', 1);
 	taskCount = tasks.length;
 	clearTaskList();
 	showTaskList();
 }
 
+
 // Обработчик события - нажатие на кнопку Удалить
 function clickDeleteBtn() {
 	for (let i = 0; i < deleteBtnList.length; i++) {
 		deleteBtnList[i].addEventListener('click', removeTask, false);
+	}
+}
+
+// Обработчик события - нажатие на кнопку Изменить
+function clickEditBtn() {
+	for (let i = 0; i < editBtnList.length; i++) {
+		editBtnList[i].addEventListener('click', editTask.bind(null, i), true);
 	}
 }
 
